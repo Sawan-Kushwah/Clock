@@ -9,11 +9,12 @@
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <style>
-    *{
+    * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
     }
+
     .card img {
         width: 100%;
         height: 290px;
@@ -28,7 +29,7 @@
         font-size: 3rem;
         font-weight: 501;
         color: #040000;
-        text-shadow: 0px 0px 10px black;
+        /* text-shadow: 0px 0px 10px black; */
         padding: 0;
     }
 
@@ -62,18 +63,32 @@
     .displayBlock {
         display: block !important;
     }
-    .opacity1{
+
+    .opacity1 {
         opacity: 1 !important;
     }
-    .width{
-        width: 11%;
+
+    .width {
+        width: 140px;
         margin-bottom: 18px;
+    }
+
+    @media screen and (max-width: 550px) {
+        .sizing {
+            margin: 0px 10px;
+        }
+
+        .card-title {
+            margin: 0;
+            text-align: center;
+            margin-bottom: 10px;
+        }
     }
 </style>
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid" style="flex-direction: column;">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary"  style="padding: 0;">
+        <div class="container-fluid" style="flex-direction: column; background: #0d6efd">
             <a class="navbar-brand" href="#">Clock</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -89,7 +104,7 @@
                         <a class="nav-link" aria-current="page" href="#" style="font-size: 1.5rem;">Indian Time</a>
                     </li>
                 </ul>
-               
+
             </div>
         </div>
     </nav>
@@ -103,7 +118,8 @@
                 <p class="card-text">Indian Standard Time (IST), sometimes also called India Standard Time, is the time
                     zone observed throughout the Republic of India, with a time offset of UTC+05:30.</p>
                 <a href="#" class="btn btn-primary width mb-10" id="browse">Browse Time</a>
-                <a href="#" class="btn btn-primary width mb-10" id="remove" style="display: none; background:#e33c3c;">Remove</a>
+                <a href="#" class="btn btn-primary width mb-10" id="remove"
+                    style="display: none; background:#e33c3c;">Remove</a>
                 <form class="d-flex" role="search" style="opacity: 0;">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
                         id="searchInput">
@@ -311,7 +327,7 @@
                 }
             }
         });
- 
+
 
 
         //browse button 
