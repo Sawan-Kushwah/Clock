@@ -9,9 +9,14 @@
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
     .card img {
         width: 100%;
-        height: 250px;
+        height: 290px;
     }
 
     .card-title {
@@ -28,7 +33,7 @@
     }
 
     .container {
-        margin-top: 7rem !important;
+        margin-top: 5rem !important;
     }
 
     /* other countries box style */
@@ -57,11 +62,18 @@
     .displayBlock {
         display: block !important;
     }
+    .opacity1{
+        opacity: 1 !important;
+    }
+    .width{
+        width: 11%;
+        margin-bottom: 18px;
+    }
 </style>
 
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
+        <div class="container-fluid" style="flex-direction: column;">
             <a class="navbar-brand" href="#">Clock</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -71,17 +83,13 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="#" style="font-size: 1.5rem;">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#">Indian Time</a>
+                        <a class="nav-link" aria-current="page" href="#" style="font-size: 1.5rem;">Indian Time</a>
                     </li>
                 </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
-                        id="searchInput">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
+               
             </div>
         </div>
     </nav>
@@ -94,7 +102,13 @@
                 <h5 class="card-title">The Time of India is : <span id="time"></span></h5>
                 <p class="card-text">Indian Standard Time (IST), sometimes also called India Standard Time, is the time
                     zone observed throughout the Republic of India, with a time offset of UTC+05:30.</p>
-                <a href="#" class="btn btn-primary" id="browse">Browse Time</a>
+                <a href="#" class="btn btn-primary width mb-10" id="browse">Browse Time</a>
+                <a href="#" class="btn btn-primary width mb-10" id="remove" style="display: none; background:#e33c3c;">Remove</a>
+                <form class="d-flex" role="search" style="opacity: 0;">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+                        id="searchInput">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
             </div>
         </div>
     </div>
@@ -277,24 +291,45 @@
         }
 
         // search input 
-        const searchInput = document.getElementById('searchInput').value.toUpperCase();
-        // console.log(searchInput);
-        let data = document.getElementsByClassName('data');
-        // for(let i = 0; i < data.length; i++ ){
-        //     let toSearch = document.getElementsByClassName('data')[i].innerHTML.toUpperCase();
-        //     if(toSearch.indexOf(searchInput) > -1){
-        //         document.getElementsByClassName('data')[i].style.display = '';
-        //     }else{
-        //         document.getElementsByClassName('data')[i].style.display = 'none';
-        //     }
-        // }
+        // Add an event listener to the search input
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', function () {
+            const searchText = searchInput.value.toUpperCase();
+
+            // Get all country elements
+            const countries = document.getElementsByClassName('data');
+
+            // Loop through the country elements and hide/show them based on the search input
+            for (let i = 0; i < countries.length; i++) {
+                const countryName = countries[i].innerText.toUpperCase();
+                const accordionItem = countries[i].closest('.accordion-item');
+
+                if (countryName.includes(searchText)) {
+                    accordionItem.style.display = 'block';
+                } else {
+                    accordionItem.style.display = 'none';
+                }
+            }
+        });
+ 
+
 
         //browse button 
-
         let browse = document.getElementById('browse');
+        let remove = document.getElementById('remove');
         let country = document.getElementsByClassName('accordion')[0];
+        let browseInput = document.getElementsByClassName('d-flex')[0];
         browse.addEventListener('click', () => {
-            country.classList.toggle('displayBlock');
+            country.classList.add('displayBlock');
+            browseInput.classList.add('opacity1');
+            remove.style.display = "block";
+            browse.style.display = "none";
+        })
+        remove.addEventListener('click', () => {
+            country.classList.remove('displayBlock');
+            browseInput.classList.remove('opacity1');
+            remove.style.display = "none";
+            browse.style.display = "block";
         })
 
     </script>
