@@ -115,7 +115,7 @@
 
             <div class="card-body">
                 <h5 class="card-title">The Time of India is : <span id="time"></span></h5>
-                <p class="card-text">Indian Standard Time (IST), sometimes also called India Standard Time, is the time
+                <p class="card-text" style="text-align: center;">Indian Standard Time (IST), sometimes also called India Standard Time, is the time
                     zone observed throughout the Republic of India, with a time offset of UTC+05:30.</p>
                 <a href="#" class="btn btn-primary width mb-10" id="browse">Browse Time</a>
                 <a href="#" class="btn btn-primary width mb-10" id="remove"
@@ -287,8 +287,8 @@
             document.getElementById('time').innerHTML = time + " on " + date;
         }, 1000);
 
-        // let td = document.getElementById('time');
-        // td.style.fontSize = "2rem";
+        let td = document.getElementById('time');
+        td.style.fontSize = "2.8rem";
 
         // calculate the time for different country based of there utc
         function calculateTime(city, offset) {
